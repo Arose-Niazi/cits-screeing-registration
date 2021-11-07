@@ -1,0 +1,80 @@
+extends ../layout
+
+block content
+    .row
+        .col-sm-10
+            h1=title
+        .col-sm-2
+            a(href="/products/add", class="btn btn-success float-right") Add New Product
+    table.table
+        thead
+            tr
+                th Name
+                th Price
+                th rating
+                th Description
+                th Actions
+                if user
+                    th Update Rating
+        tbody
+            each product in products
+                tr
+                    td=product.name
+                    td=product.price
+                    td
+                        if product.rating > 0
+                            span(class="fa fa-star fa-lg checked")
+                        else 
+                            span(class="fa fa-star fa-lg ")
+                        if product.rating > 1
+                            span(class="fa fa-star fa-lg checked")
+                        else 
+                            span(class="fa fa-star fa-lg")
+                        if product.rating > 2
+                            span(class="fa fa-star fa-lg checked")
+                        else 
+                            span(class="fa fa-star fa-lg")
+                        if product.rating > 3
+                            span(class="fa fa-star fa-lg checked")
+                        else 
+                            span(class="fa fa-star fa-lg")
+                        if product.rating > 4
+                            span(class="fa fa-star fa-lg checked")
+                        else 
+                            span(class="fa fa-star fa-lg")
+                            
+                    td=product.discription
+                    td
+                        a(href="/products/delete/"+product._id, class="btn btn-danger") Delete
+                        a(href="/products/edit/"+product._id, class="btn btn-warning") Edit
+                        a(href="/products/cart/"+product._id, class="btn btn-info") Add To Cart
+                    if user
+                        td 
+                            form(action="/products/rating",method="post")
+                                .form-group
+                                    input#_id(type="hidden", name="_id", value=product._id)
+                                div(class="form-group row")
+                                    .col-sm-6
+                                        select#rate(class="form-control", name="rate" value=product.rating)
+                                            if product.rating == 1
+                                                option(selected) 1
+                                            else 
+                                                option 1
+                                            if product.rating == 2
+                                                option(selected) 2
+                                            else 
+                                                option 2
+                                            if product.rating == 3
+                                                option(selected) 3
+                                            else 
+                                                option 3
+                                            if product.rating == 4
+                                                option(selected) 4
+                                            else 
+                                                option 4
+                                            if product.rating == 5
+                                                option(selected) 5
+                                            else 
+                                                option 5
+                                    .col-sm-6
+                                        input(type="submit", class="btn btn-info", value="Update")

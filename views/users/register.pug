@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1 Register
+  form(action="/register",method="post")
+        .form-group
+            label(for="name", class="spacer") Name
+            input#name(type="text", class="form-control", name="name", required, minlength="3", maxlength="30")
+        .form-group
+            label(for="email", class="spacer") Email
+            input#email(type="email", class="form-control", name="email", required)
+        .form-group
+            label(for="password", class="spacer") Password
+            input#price(type="password", class="form-control", name="password", required, minlength="3",)
+        .form-group
+            label(for="gender", class="spacer") Gender
+            select#gender(class="form-control", name="gender")
+                option Male
+                option Female
+        div(class="d-grid gap-2", class="spacer")
+            input(type="submit", class="btn btn-lg btn-info" value="Register")

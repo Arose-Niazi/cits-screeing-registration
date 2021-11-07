@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    h1 Add New Product
+    form(action="/products/add",method="post")
+        .form-group
+            label(for="name") Name
+            input#name(type="text", class="form-control", name="name")
+        .form-group
+            label(for="price") Price
+            input#price(type="text", class="form-control", name="price")
+        .form-group
+            label(for="discription") Description
+            input#discription(type="text", class="form-control", name="discription")
+        .form-group
+            label(for="rating") Rating
+            select#rating(class="form-control", name="rating")
+                option 1
+                option 2
+                option 3
+                option 4
+                option 5
+        input(type="submit", class="btn btn-info")
+    

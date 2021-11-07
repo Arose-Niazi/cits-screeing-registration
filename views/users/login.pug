@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1 Login
+  form(action="/login",method="post")        
+        .form-group
+            label(for="email", class="spacer") Email
+            input#email(type="email", class="form-control", name="email", value="arose.niazi@yahoo.com", required)
+        .form-group
+            label(for="password", class="spacer") Password
+            input#price(type="password", class="form-control", name="password", value="admin", required, minlength="3", text="Minimum 3 characters in paster")
+        div(class="d-grid gap-2", class="spacer")
+            input(type="submit", class="btn btn-lg btn-info" value="Login")
