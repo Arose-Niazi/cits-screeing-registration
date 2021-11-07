@@ -2,7 +2,8 @@ extends layout
 
 block content
     h1 Total Registered: #{users.length}
-    h2 In Venue: #{visited.length}
+    if visited.length > 0
+        h2 In Venue: #{visited.length}
     table.table
         thead
             tr
