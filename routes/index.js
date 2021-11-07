@@ -28,7 +28,7 @@ router.get("/", async function (req, res, next) {
     if (fName.length > 1) {
 
       connection.query('INSERT IGNORE INTO semi VALUES (?,?,?,0);', [ID, fName, lName]);
-      let qr_png = QRCode.image(JSON.stringify(`https://cits.arose-niazi.me/?ID=FA18-BSE-010`), { type: 'png' });
+      let qr_png = QRCode.image(ID, { type: 'png', parse_url: true });
       await qr_png.pipe(require('fs').createWriteStream('public/Images/QR/' + req.query.ID + '.png'));
       res.render("index", { ID, fName });
     }
