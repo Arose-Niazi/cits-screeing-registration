@@ -23,14 +23,22 @@ router.get("/", async function (req, res, next) {
   var ID = req.query.ID ? req.query.ID : null;
   var fName = req.query.fName ? req.query.fName : '';
   var lName = req.query.lName ? req.query.lName : '';
+
+  if (ID.length > 20 || fName.length > 20 || lName > 20)
+    return res.render('poster');
+
   if (ID) {
     const connection = await mysql.createConnection(connectionObject);
     if (fName.length > 1) {
-
-      connection.query('INSERT IGNORE INTO semi VALUES (?,?,?,0);', [ID, fName, lName]);
-      let qr_png = QRCode.image(ID, { type: 'png', parse_url: true, ec_level: 'H', size: 10 });
-      await qr_png.pipe(require('fs').createWriteStream('public/Images/QR/' + req.query.ID + '.png'));
-      res.render("index", { ID, fName });
+      const [rows, fields] = await connection.query('SELECT * FROM registartion LIMIT 1');
+      if (rows[0].Active) {
+        connection.query('INSERT IGNORE INTO semi VALUES (?,?,?,0);', [ID, fName, lName]);
+        let qr_png = QRCode.image(ID, { type: 'png', parse_url: true, ec_level: 'H', size: 10 });
+        await qr_png.pipe(require('fs').createWriteStream('public/Images/QR/' + req.query.ID + '.png'));
+        res.render("index", { ID, fName, Active: 1 });
+      }
+      else
+        res.render("index", { Active: 0 });
     }
     else {
       if (req.query.token == '123') {

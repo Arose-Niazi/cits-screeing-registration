@@ -3,12 +3,17 @@ extends layout
 block content
 	div(style='text-align: center;')
 		br
-		h1 Welcome #{fName}
-		p You are now registerd, please arrive at N Block on match day (Thursday, 11th November, 2021) at 6:30 PM. 
-		h1 Please keep this QR Code with you, it will be used for your entry.
-			div 
-				img(src="Images/QR/"+ID+".png", alt="Not found")
-		a(href="Images/QR/"+ID+".png" download="RegistartionPass.png")
-			button(class="btn btn-lg btn-primary" style="width:100%")
-				i(class="fa fa-download")
-				p Download
+		if Active
+			h1 Welcome #{fName}
+			p You are now registerd, please arrive at N Block on match day (Thursday, 11th November, 2021) at 6:30 PM. 
+			h1 Please keep this QR Code with you, it will be used for your entry.
+				div 
+					img(src="Images/QR/"+ID+".png", alt="Not found")
+			a(href="Images/QR/"+ID+".png" download="RegistartionPass.png")
+				button(class="btn btn-lg btn-primary" style="width:100%")
+					i(class="fa fa-download")
+					p Download
+		else 
+			div(class="alert alert-dismissible alert-danger")
+				button(class="btn-close", data-bs-dismiss="alert")
+				span Registration Closed
