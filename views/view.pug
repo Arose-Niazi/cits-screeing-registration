@@ -4,10 +4,18 @@ block content
 	div(style='text-align: center;')
 		if ID
 			if Arrived 
-				h1(style='color:red') USER ALREADY IN VENUE
+				div(class="alert alert-dismissible alert-warning")
+					button(class="btn-close", data-bs-dismiss="alert")
+					span User already in veunue
+			else 
+				div(class="alert alert-dismissible alert-success")
+					button(class="btn-close", data-bs-dismiss="alert")
+					span Welcome! User is elegible to enter.
 			h1 #{ID}
 			h1 #{fName} #{lName}
 			br
 			img(src="Images/QR/"+ID+".png", alt="Not found")
 		else 
-			h1(style='color:red') NOT REGISTERED
+			div(class="alert alert-dismissible alert-danger")
+				button(class="btn-close", data-bs-dismiss="alert")
+				span User not registered

@@ -28,15 +28,19 @@ router.get("/", async function (req, res, next) {
     if (fName.length > 1) {
 
       connection.query('INSERT IGNORE INTO semi VALUES (?,?,?,0);', [ID, fName, lName]);
-      let qr_png = QRCode.image(ID, { type: 'png', parse_url: true });
+      let qr_png = QRCode.image(ID, { type: 'png', parse_url: true, ec_level: 'H', size: 10 });
       await qr_png.pipe(require('fs').createWriteStream('public/Images/QR/' + req.query.ID + '.png'));
       res.render("index", { ID, fName });
     }
     else {
-      const [rows, fields] = await connection.query('SELECT * FROM semi WHERE ID=? LIMIT 1', [ID]);
-      console.log(rows);
-      res.render("view", rows[0]);
-      connection.query('UPDATE semi SET Arrived=1 WHERE ID=? LIMIT 1', [ID]);
+      if (req.query.token == '123') {
+        const [rows, fields] = await connection.query('SELECT * FROM semi WHERE ID=? LIMIT 1', [ID]);
+        console.log(rows);
+        res.render("view", rows[0]);
+        connection.query('UPDATE semi SET Arrived=1 WHERE ID=? LIMIT 1', [ID]);
+      }
+      else
+        res.render('poster');
     }
 
   }
