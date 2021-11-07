@@ -1,6 +1,10 @@
-doctype html
-html
-	body
-		h1 Please keep this with you
-		div 
-			img(src="Images/QR/"+ID+".png", alt="Not found")
+extends layout
+
+block content
+	div(style='text-align: center;')
+		br
+		h1 Welcome #{fName}
+		p You are now registerd, please arrive at N Block on match day (Thursday, 11th November, 2021) at 6:30 PM. 
+		h1 Please keep this QR Code with you, it will be used for your entry.
+			div 
+				img(src="Images/QR/"+ID+".png", alt="Not found")

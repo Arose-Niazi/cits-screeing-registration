@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	div(style='text-align: center;')
+		if Arrived 
+			h1(style='color:red') USER ALREADY IN VENUE
+		h1 #{ID}
+		h1 #{fName} #{lName}
+		br
+		img(src="Images/QR/"+ID+".png", alt="Not found")

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Total Registered: #{users.length}
+    h2 In Venue: #{visited.length}
+    table.table
+        thead
+            tr
+                th Roll No
+                th First Name
+                th Last Name
+                th Arrived
+        tbody
+            each user in users
+                tr
+                    td=user.ID
+                    td=user.fName
+                    td=user.lName
+                    td
+                        span(class=(user.Arrived? 'badge bg-success' : 'badge bg-danger'))=user.Arrived? 'Yes' : 'No'
+                
