@@ -20,7 +20,7 @@ router.get("/users", async function (req, res, next) {
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  var ID = req.query.ID ? req.query.ID : null;
+  var ID = req.query.ID ? req.query.ID : '';
   var fName = req.query.fName ? req.query.fName : '';
   var lName = req.query.lName ? req.query.lName : '';
 
