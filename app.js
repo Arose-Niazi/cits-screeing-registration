@@ -36,12 +36,12 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
+/*
 mongoose
   .connect("mongodb://localhost:27017/cits", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to Mongo...."))
-  .catch((error) => console.log(error.message));
+  .catch((error) => console.log(error.message));*/
 module.exports = app;
