@@ -41,14 +41,14 @@ router.get("/", async function (req, res, next) {
         res.render("index", { Active: 0 });
     }
     else {
+      const [rows, fields] = await connection.query('SELECT * FROM semi WHERE ID=? LIMIT 1', [ID]);
       if (req.query.token == '123') {
-        const [rows, fields] = await connection.query('SELECT * FROM semi WHERE ID=? LIMIT 1', [ID]);
         console.log(rows);
         res.render("view", rows[0]);
         connection.query('UPDATE semi SET Arrived=1 WHERE ID=? LIMIT 1', [ID]);
       }
       else
-        res.render('poster');
+        res.render("view", { ...rows[0], justView: 1 });
     }
 
   }

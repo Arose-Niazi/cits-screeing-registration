@@ -2,19 +2,25 @@ extends layout
 
 block content
 	div(style='text-align: center;')
-		if ID
-			if Arrived 
-				div(class="alert alert-dismissible alert-warning")
-					button(class="btn-close", data-bs-dismiss="alert")
-					span User already in veunue
+		if(ID)
+			if justView 
+				h1 #{ID}
+				h1 #{fName} #{lName}
+				br
+				img(src="Images/QR/"+ID+".png", alt="Not found")
 			else 
-				div(class="alert alert-dismissible alert-success")
-					button(class="btn-close", data-bs-dismiss="alert")
-					span Welcome! User is elegible to enter.
-			h1 #{ID}
-			h1 #{fName} #{lName}
-			br
-			img(src="Images/QR/"+ID+".png", alt="Not found")
+				if Arrived 
+					div(class="alert alert-dismissible alert-warning")
+						button(class="btn-close", data-bs-dismiss="alert")
+						span User already in veunue
+				else 
+					div(class="alert alert-dismissible alert-success")
+						button(class="btn-close", data-bs-dismiss="alert")
+						span Welcome! User is elegible to enter.
+				h1 #{ID}
+				h1 #{fName} #{lName}
+				br
+				img(src="Images/QR/"+ID+".png", alt="Not found")
 		else 
 			div(class="alert alert-dismissible alert-danger")
 				button(class="btn-close", data-bs-dismiss="alert")
