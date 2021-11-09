@@ -8,6 +8,10 @@ block content
 				h1 #{fName} #{lName}
 				br
 				img(src="Images/QR/"+ID+".png", alt="Not found")
+				a(href="Images/QR/"+ID+".png" download="RegistartionPass.png")
+					button(class="btn btn-lg btn-primary" style="width:100%")
+						i(class="fa fa-download")
+						p Download
 			else 
 				if Arrived 
 					div(class="alert alert-dismissible alert-warning")
