@@ -3,11 +3,13 @@ var express = require("express");
 var router = express.Router();
 var QRCode = require('qr-image');
 
+require('dotenv').config();
+
 const connectionObject = {
-  host: "51.210.180.137",
-  user: "cits",
-  password: "PLUY0P3Du0bNz2iN",
-  database: "cits",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE,
 };
 
 router.get("/users", async function (req, res, next) {
